@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Thank you for contacting FreightProtect</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+  <div style="text-align: center;">
+    <img src="cid:freight_logo" alt="FreightProtect"
+         style="max-width: 100%; width: 100%; height: auto; display: block; margin: 0 auto;" />
+  </div>
+
+  <h2 style="margin-top: 30px;">Thank You for Your Inquiry</h2>
+
+  <p>Hi {{ first_name }},<br><br>
+    Thank you for reaching out to FreightProtect! We have received your request for early access. Our team will review your information and contact you soon.<br>
+    <br>
+    <strong>Here’s what we received:</strong>
+  </p>
+  <ul>
+    <li><strong>Name:</strong> {{ first_name }} {{ last_name }}</li>
+    <li><strong>Company:</strong> {{ company_name }}</li>
+    <li><strong>Phone:</strong> {{ mobile_phone }}</li>
+    <li><strong>Email:</strong> {{ work_email }}</li>
+    <li><strong>Company Type:</strong> {{ company_types }}</li>
+  </ul>
+  <p>If any detail is incorrect, just reply to this email to update us.</p>
+  <br>
+  <p>Regards,<br>The FreightProtect Team</p>
+  <hr>
+  <p style="font-size: 0.9em;">This is an automated message from freightprotect.com. Please do not reply to this address.</p>
+</body>
+</html>

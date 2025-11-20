@@ -1,0 +1,564 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="icon" href="{% static 'website/img/favicon.png' %}" type="image/x-icon">
+  <title>FreightProtect</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="stylesheet" href="{% static 'website/css/contact.css' %}">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 0 1rem;
+    }
+    .form-wrapper {
+      max-width: 520px;
+      width: 100%;
+      margin: 2rem auto 0 auto;
+    }
+
+    .form-row {
+      display: block;
+      margin-bottom: 0;
+      gap: 0;
+    }
+    .form-group {
+      width: 100%;
+      min-width: 0;
+      margin-bottom: 1.5rem;
+    }
+    .form-section {
+      margin-bottom: 1.5rem;
+    }
+    .spinner {
+      margin: 1rem auto;
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left-color: #007bff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 500px) {
+      .form-wrapper {
+        padding: 1.4rem 0.6rem;
+      }
+    }
+
+    .required-asterisk {
+      color: #e74c3c !important;
+      margin-left: 2px;
+      font-size: 1.13em;
+      font-weight: 900;
+      vertical-align: baseline;
+    }
+
+    .recaptcha-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Align to left */
+      margin: 1.5rem 0;
+    }
+
+    .g-recaptcha {
+      transform: scale(1);
+      transform-origin: left;
+    }
+
+    @media (max-width: 400px) {
+      .g-recaptcha {
+        transform: scale(0.90);
+      }
+    }
+
+    #recaptcha-container {
+      transition: all 0.3s ease-in-out;
+    }
+
+    #error-recaptcha {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .phone-group {
+      display: flex;
+        height: 45px;
+      align-items: stretch;
+      width: 100%;
+      background: #fff;
+      overflow: hidden;
+      box-sizing: border-box;
+            border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+
+    .input.input-code {
+        width: 45px;
+        border: none;
+      padding: 0 1rem;
+      text-align: center;
+      background: #f6f6f6;
+      color: #333;
+      font-weight: 500;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .phone-divider {
+      width: 1px;
+      background: #e0e0e0;
+      align-self: stretch;
+      display: block;
+    }
+
+    .input.input-main {
+      border: none;
+      flex: 1 1 auto;
+      background: #fff;
+      font-size: 1rem;
+      outline: none;
+
+    }
+
+    .input.input-code, .input.input-main {
+      padding: 0.53em 0.75em;
+      height: 45px;
+      line-height: 1.25;
+      font-family: inherit;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <a href="{% url 'index' %}" class="header-left">
+    <img src="{% static 'website/img/freight-protect-logo.png' %}" alt="FreightProtect" class="logo">
+  </a>
+  <div class="header-right">
+    <div class="dropdown">
+      <div class="header-link dropdown-toggle" tabindex="0">
+        Services
+        <span class="dropdown-arrow"></span>
+      </div>
+      <div class="dropdown-menu">
+        <a href="#" class="dropdown-item show-coming-soon">LTL Quotebot</a>
+        <a href="#" class="dropdown-item show-coming-soon">NMFC</a>
+        <a href="#" class="dropdown-item show-coming-soon">Limited Access</a>
+      </div>
+    </div>
+
+    <!-- <a href="{% url 'contact' %}" class="header-link">Services</a> -->
+    <a href="{% url 'contact' %}" class="header-link">Contact Us</a>
+  </div>
+</header>
+  <div class="contact-section animate-in">
+    <div class="container">
+      <div class="form-wrapper">
+        <h2 class="form-title"><span>Get</span> early access</h2>
+        <form id="contactForm" class="form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First Name<span class="required-asterisk">*</span></label>
+              <input id="firstName" name="firstName" type="text" class="input"/>
+              <div class="form-error" id="error-firstName"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last Name<span class="required-asterisk">*</span></label>
+              <input id="lastName" name="lastName" type="text" class="input"/>
+              <div class="form-error" id="error-lastName"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="companyName">Company Name<span class="required-asterisk">*</span></label>
+              <input id="companyName" name="companyName" type="text" class="input"/>
+              <div class="form-error" id="error-companyName"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="workEmail">Work Email<span class="required-asterisk">*</span></label>
+              <input id="workEmail" name="workEmail" type="email" class="input"/>
+              <div class="form-error" id="error-workEmail"></div>
+            </div>
+          </div>
+          <div class="form-section">
+            <label class="form-label">Company Type<span class="required-asterisk">*</span></label>
+            <div class="checkbox-group">
+              <label class="checkbox-label"><input type="checkbox" name="companyTypes" value="Carrier">Carrier</label>
+              <label class="checkbox-label"><input type="checkbox" name="companyTypes" value="Shipper">Shipper</label>
+              <label class="checkbox-label"><input type="checkbox" name="companyTypes" value="3PL / Broker">3PL / Broker</label>
+              <label class="checkbox-label"><input type="checkbox" name="companyTypes" value="Tech Provider">Tech Provider</label>
+              <label class="checkbox-label"><input type="checkbox" name="companyTypes" value="Other">Other</label>
+            </div>
+            <div class="form-error" id="error-companyTypes"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mobilePhone">Mobile Phone Number<span class="required-asterisk">*</span></label>
+            <div class="phone-group">
+              <input
+                id="countryCode"
+                name="countryCode"
+                type="text"
+                class="input input-code"
+                value="+1"
+                readonly
+                tabindex="-1"
+                aria-label="Country code"
+              />
+              <span class="phone-divider"></span>
+              <input
+                id="mobilePhoneMain"
+                name="mobilePhoneMain"
+                type="tel"
+                class="input input-main"
+                autocomplete="tel"
+                placeholder="510-377-2338"
+                maxlength="12"
+                inputmode="tel"
+                required
+              />
+            </div>
+            <div class="form-error" id="error-mobilePhoneMain"></div>
+          </div>
+
+          <div class="form-group recaptcha-group">
+            <div class="g-recaptcha"
+                data-sitekey="6LfCnXMrAAAAAH1dctZT4_svoe67UdZDsRvZXwJ7"
+                data-callback="onRecaptchaSuccess"
+                data-expired-callback="onRecaptchaExpired"
+                id="recaptcha-container">
+            </div>
+            <div class="form-error" id="error-recaptcha"></div>
+          </div>
+
+          <button type="submit" class="submit-btn">Connect with Freight</button>
+          <div id="loader" class="spinner" style="display:none;"></div>
+          <p class="success-message" id="success-message" style="display:none;">Your query has been submitted.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<section class="classic-contact-section animate-in">
+  <div class="contact-col">
+    <h3>Contact us</h3>
+    <ul>
+      <li>
+        <a href="mailto:Sales@asanisetech.com">
+          <span>sales@freightprotect.com</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:career@asanisetech.com">
+          <span>career@freightprotect.com</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:info@asanisetech.com">
+          <span>info@freightprotect.com</span>
+        </a>
+      </li>
+      <li>
+        <a href="tel:+918025043219">
+          <span>+1 510-377-2338</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+  
+  <footer class="site-footer animate-in">
+    <div class="footer-content">
+      <div class="footer-info">
+        <div class="footer-trademark">
+          &copy; 2024–2025 FreightProtect Inc.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="comingSoonModal" style="display:none;">
+    <div class="modal-content">
+      <h2>Coming Soon</h2>
+      <p>This feature will be available shortly.</p>
+      <button class="modal-close-btn" onclick="document.getElementById('comingSoonModal').style.display='none'">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // Settings
+    const minChar = 2, maxChar = 30;
+    const form = document.getElementById('contactForm');
+    const fields = ["firstName", "lastName", "companyName", "workEmail", "mobilePhoneMain"];
+    const phoneMainInput = document.getElementById('mobilePhoneMain');
+    const countryCodeInput = document.getElementById('countryCode');
+    let touched = {};
+
+    // Utility
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+          const trimmed = cookie.trim();
+          if (trimmed.startsWith(name + '=')) {
+            cookieValue = decodeURIComponent(trimmed.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    function onRecaptchaSuccess() {
+      document.getElementById('error-recaptcha').innerText = '';
+      document.getElementById('recaptcha-container').style.filter = 'none';
+    }
+
+    function onRecaptchaExpired() {
+      document.getElementById('error-recaptcha').innerText = 'Captcha expired. Please verify again.';
+      document.getElementById('recaptcha-container').style.filter = 'grayscale(100%) opacity(0.5)';
+      setTimeout(() => grecaptcha.reset(), 200);
+    }
+
+    function showError(field, msg) {
+      document.getElementById('error-' + field).innerText = msg || "";
+      const input = document.getElementById(field);
+      if (input) {
+        if (msg) input.classList.add("input-error");
+        else input.classList.remove("input-error");
+      }
+    }
+    function showAllErrors(errors) {
+      fields.forEach(field => {
+        showError(field, touched[field] ? errors[field] : "");
+      });
+      showError('companyTypes', touched['companyTypes'] ? errors.companyTypes : "");
+    }
+
+    function validateNameField(fieldValue, label) {
+      let val = fieldValue.trim();
+      if (!val) return `${label} is required.`;
+      if (val.length < minChar) return `${label} must be at least ${minChar} characters.`;
+      if (val.length > maxChar) return `${label} must be at most ${maxChar} characters.`;
+      if (!/^[\p{L} ]+$/u.test(val)) return `${label} must contain only letters and spaces.`;
+      return "";
+    }
+
+    function validateEmail(email) {
+      // allow: example@domain.com; disallow: 77@12gmail.co
+      if(!email) return false;
+      let parts = email.split('@');
+      if(parts.length !== 2) return false;
+      let [user, domainall] = parts;
+      // Check username
+      if(!/^[A-Za-z][A-Za-z0-9._%+-]*$/.test(user)) return false;
+      // reject if domainall starts with a digit (example: 12gmail.com)
+      if(!/^[A-Za-z][A-Za-z0-9.-]*\.[A-Za-z]{2,}$/.test(domainall)) return false;
+      // TLD must be at least 2 letters
+      let domParts = domainall.split('.'); 
+      let tld = domParts[domParts.length-1];
+      if(!/^[A-Za-z]{2,}$/.test(tld)) return false;
+      return true;
+    }
+
+    function validateField(name, value) {
+      switch (name) {
+        case "firstName": return validateNameField(value, "First name");
+        case "lastName": return validateNameField(value, "Last name");
+        case "companyName": return validateNameField(value, "Company name");
+        case "workEmail":
+          if (!value.trim()) return "Work email is required.";
+          if (!validateEmail(value)) return "Invalid email format.";
+          return "";
+        case "mobilePhoneMain":
+          value = value.trim();
+          if (!value) return "Phone number is required.";
+          // Must match the format 510-377-2338
+          if (!/^\d{3}-\d{3}-\d{4}$/.test(value))
+            return "Enter a valid phone: 510-377-2338";
+          return "";
+        default: return "";
+      }
+    }
+
+    function getCheckedCompanyTypes() {
+      return [...document.querySelectorAll('input[name="companyTypes"]:checked')].map(x => x.value);
+    }
+
+    function validateForm() {
+      let errors = {};
+      fields.forEach(field => {
+        const val = document.getElementById(field).value;
+        errors[field] = validateField(field, val);
+      });
+      const checked = getCheckedCompanyTypes();
+      errors.companyTypes = checked.length ? "" : "Select at least one company type.";
+      return errors;
+    }
+
+    // Format phone number as '510-377-2338' live, preserving caret!
+    phoneMainInput.addEventListener('input', function () {
+      // Save caret position
+      let value = this.value.replace(/\D/g, '').slice(0, 10);
+      let formatted = '';
+      if (value.length > 0) formatted += value.slice(0, 3);
+      if (value.length >= 4) formatted += '-' + value.slice(3, 6);
+      if (value.length >= 7) formatted += '-' + value.slice(6, 10);
+
+      // Caret magic: count digits before caret in old value,
+      // place caret after that many digits in new formatted text
+      let old = this.value;
+      let pos = this.selectionStart;
+      let digitsBefore = old.substring(0, pos).replace(/\D/g, '').length;
+      let newPos = 0, digitCount = 0;
+      while (newPos < formatted.length && digitCount < digitsBefore) {
+        if (/\d/.test(formatted[newPos])) digitCount++;
+        newPos++;
+      }
+      this.value = formatted;
+      this.setSelectionRange(newPos, newPos);
+    });
+
+    fields.forEach(field => {
+      const el = document.getElementById(field);
+      el.addEventListener('blur', e => {
+        touched[field] = true;
+        const errors = validateForm();
+        showError(field, errors[field]);
+      });
+      el.addEventListener('input', e => {
+        if (touched[field]) {
+          const errors = validateForm();
+          showError(field, errors[field]);
+        }
+      });
+    });
+    document.querySelectorAll('input[name="companyTypes"]').forEach(el => {
+      el.addEventListener('change', e => {
+        touched['companyTypes'] = true;
+        const errors = validateForm();
+        showError('companyTypes', errors.companyTypes);
+      })
+    });
+
+    // Form submit
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      fields.forEach(f => { touched[f] = true; });
+      touched['companyTypes'] = true;
+
+      const errors = validateForm();
+      showAllErrors(errors);
+
+      const hasError = Object.values(errors).some(x => x);
+
+      const recaptchaToken = grecaptcha.getResponse();
+      const captchaErrorEl = document.getElementById('error-recaptcha');
+
+      if (!recaptchaToken) {
+        captchaErrorEl.innerText = 'Please complete the reCAPTCHA.';
+      } else {
+        captchaErrorEl.innerText = '';
+      }
+
+      // ✅ Check if any errors (form or captcha)
+      if (!hasError && recaptchaToken) {
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
+
+        const formData = {
+          firstName: form.firstName.value,
+          lastName: form.lastName.value,
+          companyName: form.companyName.value,
+          workEmail: form.workEmail.value,
+          mobilePhone: countryCodeInput.value + ' ' + phoneMainInput.value,
+          companyTypes: getCheckedCompanyTypes(),
+          recaptcha: recaptchaToken
+        };
+
+        fetch('/contact/submit/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+          loader.style.display = 'none';
+          if (data.success) {
+            const msg = document.getElementById('success-message');
+            msg.style.display = 'block';
+            form.reset();
+            grecaptcha.reset();
+            fields.forEach(field => touched[field] = false);
+            touched['companyTypes'] = false;
+            captchaErrorEl.innerText = '';
+            setTimeout(() => { msg.style.display = 'none'; }, 5000);
+          } else {
+            captchaErrorEl.innerText = data.error || 'Something went wrong.';
+          }
+        })
+        .catch(err => {
+          loader.style.display = 'none';
+          captchaErrorEl.innerText = 'Submission failed. Please try again later.';
+        });
+      }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var triggers = document.querySelectorAll('.show-coming-soon'); // Only these!
+        var modal = document.getElementById('comingSoonModal');
+        triggers.forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                e.preventDefault(); // Don't go to href
+                modal.style.display = 'flex';
+            });
+        });
+        // Optional: close on overlay click
+        modal.addEventListener('click', function(e) {
+            if(e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target); // Remove after animation (only animate in once)
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+
+      // Animate all elements with .animate-in
+      document.querySelectorAll('.animate-in').forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+  </script>
+</body>
+</html>

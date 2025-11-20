@@ -1,0 +1,401 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreightProtect</title>
+    <link rel="icon" href="{% static 'website/img/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'website/css/index.css' %}">
+</head>
+<body>
+<header>
+  <div class="header-bg"></div>
+  <a href="{% url 'index' %}" class="header-left">
+    <img src="{% static 'website/img/freight-protect-logo.png' %}" alt="FreightProtect" class="logo">
+  </a>
+  <div class="header-right">
+    <div class="dropdown">
+      <div class="header-link dropdown-toggle" tabindex="0">
+        Services
+        <span class="dropdown-arrow"></span>
+      </div>
+      <div class="dropdown-menu">
+        <a href="#" class="dropdown-item show-coming-soon">LTL Quotebot</a>
+        <a href="#" class="dropdown-item show-coming-soon">NMFC</a>
+        <a href="#" class="dropdown-item show-coming-soon">Limited Access</a>
+      </div>
+    </div>
+
+    <!-- <a href="{% url 'contact' %}" class="header-link">Services</a> -->
+    <a href="{% url 'contact' %}" class="header-link">Contact Us</a>
+  </div>
+</header>
+
+<main>
+
+    <div class="ditto-bg">
+    <div class="ditto-lines">
+      <div class="ditto-line ditto-line1"></div>
+      <div class="ditto-line ditto-line2"></div>
+      <div class="ditto-line ditto-line3"></div>
+      <div class="ditto-line ditto-line4"></div>
+      <div class="ditto-line ditto-line5"></div>
+      <div class="ditto-line ditto-line6"></div>
+      <div class="ditto-line ditto-line7"></div>
+      <div class="ditto-line ditto-line8"></div>
+    </div>
+<!-- ICON 1: Freight / Truck -->
+<div class="ditto-icon-box ditto-icon1 animate-in">
+  <svg class="ditto-icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="7" cy="17" r="2"/>
+    <circle cx="17" cy="17" r="2"/>
+    <path d="M5 17h-2v-11a1 1 0 0 1 1-1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"/>
+  </svg>
+</div>
+
+    <div class="ditto-icon-box ditto-icon2 animate-in">
+      <!-- Sparkle SVG -->
+      <svg class="ditto-icon-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+      </svg>
+    </div>
+
+<!-- ICON 3: Backend / Database -->
+<div class="ditto-icon-box ditto-icon3 animate-in">
+  <!-- Database Icon -->
+  <svg class="ditto-icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="5" rx="9" ry="3" />
+    <path d="M3 5v6c0 1.5 4 3 9 3s9-1.5 9-3V5" />
+    <path d="M3 11v6c0 1.5 4 3 9 3s9-1.5 9-3v-6" />
+  </svg>
+</div>
+
+
+<!-- ICON 4: Network Integration -->
+<div class="ditto-icon-box ditto-icon4 animate-in">
+  <svg class="ditto-icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 9a6 6 0 1 0 12 0a6 6 0 0 0-12 0"/>
+    <path d="M12 3c1.333.333 2 2.333 2 6s-.667 5.667-2 6"/>
+    <path d="M12 3c-1.333.333-2 2.333-2 6s.667 5.667 2 6"/>
+    <path d="M6 9h12"/>
+  </svg>
+</div>
+
+
+    <div class="ditto-center-wrap">
+      <div class="ditto-glow"></div>
+      <div class="hero-gradient--blue"></div>
+      <div class="ditto-content animate-in">
+<div class="ditto-title">
+  <span class="title-desktop">Smart Solutions for Seamless Logistics</span>
+  <span class="title-mobile">
+    <div>Smart Solutions</div>
+    <div>for</div>
+    <div>Seamless Logistics</div>
+  </span>
+</div>
+
+
+        <div class="ditto-subtext">
+          To enable 3PLs to foster clarity and build trust with their customers by proactively identifying and mitigating potential challenges before they occur.
+        </div>
+<div class="ditto-badges">
+  <a class="ditto-badge show-coming-soon" href="#">
+    <span class="badge-icon">
+      <!-- Minimal bot SVG icon -->
+      <svg width="16" height="16" fill="none" stroke="#B69100" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="7" width="9" height="5.5" rx="2.5"/>
+        <path d="M6 13v1.3M10 13v1.3M8 2.5v1M11.5 6.75h.01M4.5 6.75h.01" />
+        <circle cx="8" cy="4" r="1.2" />
+      </svg>
+    </span>
+    QuoteBot
+  </a>
+<a class="ditto-badge show-coming-soon" href="#">
+  <span class="badge-icon">
+    <!-- Real Truck Icon -->
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+         stroke="#B69100" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1" y="3" width="15" height="13" rx="2" ry="2" />
+      <path d="M16 8h4l3 3v5a2 2 0 0 1-2 2h-1" />
+      <circle cx="5.5" cy="18.5" r="1.5" />
+      <circle cx="18.5" cy="18.5" r="1.5" />
+    </svg>
+  </span>
+  NMFC / Class
+</a>
+
+
+
+  <a class="ditto-badge show-coming-soon" href="#">
+    <span class="badge-icon">
+      <svg width="16" height="16" fill="none" stroke="#B69100" stroke-width="1.5">
+        <rect x="3.5" y="6" width="9" height="6" rx="2"/>
+        <path d="M8 10v.01"/><path d="M8 7v2.5"/>
+      </svg>
+    </span>
+    Limited Access
+  </a>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- <section class="hero-section">
+  <span class="hero-gradient hero-gradient--blue"></span>
+  <span class="hero-gradient hero-gradient--gold"></span>
+  <span class="hero-gradient hero-gradient--blue2"></span>
+  <span class="hero-gradient hero-gradient--sheen"></span>
+  <span class="hero-gradient hero-gradient--floor"></span>
+  <div class="hero-container">
+    <h1 class="hero-slogan">No More Waiting</h1>
+    <p class="hero-mission">
+      To enable 3PLs to foster clarity and build trust with their customers by proactively identifying 
+      and mitigating potential challenges before they occur.
+    </p>
+    <ul class="hero-services">
+      <li><a href="#" class="service-link">QuoteBot</a></li>
+      <li><a href="#" class="service-link">NMFC / Class</a></li>
+      <li><a href="#" class="service-link">Limited Access</a></li>
+    </ul>
+  </div>
+</section> -->
+
+
+<section class="hero-image-banner" style="background: url('{% static 'website/img/banner.jpg' %}') center center/cover no-repeat;">
+  <h1>
+    <span class="hero-glow animate-in">No More Waiting</span>
+    <br>
+    For Your LTL Quotes
+  </h1>
+  <p class="hero-desc animate-in">
+    See how quickly we can integrate with your system to save your support team time and reduce your customer's frustration. 
+    Our seamless process delivers quick and accurate quotes directly to your customers.
+  </p>
+
+  <div class="hero-highlights animate-in">
+    Quick Response Time | Easy Integration | Accurate Quoting | Minimized Billing Workload
+  </div>
+</section>
+
+
+
+<section class="why-section animate-in">
+  <div class="why-container">
+    <div class="why-text">
+      <h2><span class="highlight-blue">Why</span> Choose <span class="highlight-blue">FreightProtect</span></h2>
+      <p class="why-intro">
+        FreightProtect provides a new way for carriers and brokers to send quotes to their customers through our powerful API integration with any TMS platform.
+      </p>
+      <ol class="why-features animate-in">
+        <li>
+          <span class="feat-number">1</span>
+          <div class="feat-content">
+            <strong>Instant Alerts:</strong> Customers who email LTL quote requests no longer need to wait on support teams for an answer.
+          </div>
+        </li>
+        <li>
+          <span class="feat-number">2</span>
+          <div class="feat-content">
+            <strong>Speed &amp; Success:</strong> In business, time is money, and a quick response time is essential for securing loads through your service instead of competitors.
+          </div>
+        </li>
+        <li>
+          <span class="feat-number">3</span>
+          <div class="feat-content">
+            <strong>Revenue retention:</strong> Reduces labor costs for 3PLs/Carriers.
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="why-image">
+      <img src="{% static 'website/img/why-freight-protect.png' %}" alt="Logistics Data Visualization">
+    </div>
+  </div>
+</section>
+
+
+<section class="who-we-help animate-in" >
+  <h2>Who <span class="highlight-blue">We Help</span></h2>
+  <p class="who-desc">
+    FreightProtect is the perfect match for 3PLs and Carriers in the logistics industry. We streamline quoting, transforming a long-standing pain point for shippers and 3PLs into a strategic strength.
+  </p>
+
+  <div class="who-cards animate-in">
+    <div class="who-card">
+      <div class="who-icon">
+        <img src="{% static 'website/img/truck.png' %}" alt="LTL Shippers">
+      </div>
+      <h3>LTL Shippers</h3>
+      <p>Accelerate your operations with quicker, more accurate quotes, ensuring your freight moves out the door without delay.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">
+        <img src="{% static 'website/img/briefcase.png' %}" alt="LTL 3PLs and Brokers">
+      </div>
+      <h3>LTL 3PLs, Brokers &amp; Carriers</h3>
+      <p>Reduce your quoting workload to free up valuable time for high-level, strategic tasks, helping you win more shipments.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="trusted-section">
+  <h2>Trusted By</h2>
+  <div class="trusted-logos">
+    <img src="{% static 'website/img/averitt.png' %}" alt="Averitt" class="trusted-logo">
+    <img src="{% static 'website/img/ward.png' %}"     alt="Ward"    class="trusted-logo">
+    <img src="{% static 'website/img/arcbest.png' %}"  alt="ArcBest" class="trusted-logo">
+    <img src="{% static 'website/img/odf.png' %}"      alt="Old Dominion Freight Line" class="trusted-logo">
+  </div>
+</section> -->
+
+
+
+<section class="who-is-section animate-in">
+  <div class="who-is-container">
+    <figure class="who-is-image">
+      <img src="{% static 'website/img/Freight-side.png' %}" alt="Freight Protect Overview">
+    </figure>
+    <div class="who-is-text">
+      <h2>Who is <span class="highlight-blue">FreightProtect</span></h2>
+      <p>
+        FreightProtect leverages advanced API integration and a next-level quotebot to deliver fast, accurate LTL quotes. 
+        This not only saves companies time and money but also strengthens their sales teams with reliable pricing tools, 
+        all while minimizing billing disputes and maintaining strong customer relations
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="cta-section animate-in">
+  <div class="cta-container"> 
+    <div class="cta-text">
+      <h2>Instant Quotes, No Guesswork.</h2>
+      <p>
+        With FreightProtect, you’ll keep your support teams, customers, and sales force happy, 
+        ensuring your teams are more efficient and customers consistently choose you over the competition.
+      </p>
+    </div>
+    <div class="cta-action">
+      <a href="{% url 'contact' %}" class="cta-button">Request Demo</a>
+    </div>
+  </div>
+</section>
+
+<section class="classic-contact-section animate-in">
+  <div class="contact-col">
+    <h3>Contact us</h3>
+    <ul>
+      <li>
+        <a href="mailto:Sales@asanisetech.com">
+          <span>sales@freightprotect.com</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:career@asanisetech.com">
+          <span>career@freightprotect.com</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:info@asanisetech.com">
+          <span>info@freightprotect.com</span>
+        </a>
+      </li>
+      <li>
+        <a href="tel:+918025043219">
+          <span>+1 510-377-2338</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+
+
+
+</main>
+
+<footer class="site-footer animate-in">
+  <div class="footer-content">
+    <div class="footer-info">
+      <div class="footer-trademark">
+        &copy; 2024–2025 FreightProtect Inc.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="comingSoonModal" style="display:none;">
+  <div class="modal-content">
+    <h2>Coming Soon</h2>
+    <p>This feature will be available shortly.</p>
+    <button class="modal-close-btn" onclick="document.getElementById('comingSoonModal').style.display='none'">Close</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  const header = document.querySelector("header");
+  function toggleHeaderBg() {
+    if (window.scrollY > 60) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  }
+  window.addEventListener("scroll", toggleHeaderBg);
+  window.addEventListener("resize", toggleHeaderBg);
+  toggleHeaderBg();
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+    var triggers = document.querySelectorAll('.show-coming-soon'); // Only these!
+    var modal = document.getElementById('comingSoonModal');
+    triggers.forEach(function(el) {
+        el.addEventListener('click', function(e) {
+            e.preventDefault(); // Don't go to href
+            modal.style.display = 'flex';
+        });
+    });
+    // Optional: close on overlay click
+    modal.addEventListener('click', function(e) {
+        if(e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target); // Remove after animation (only animate in once)
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  // Animate all elements with .animate-in
+  document.querySelectorAll('.animate-in').forEach(el => {
+    observer.observe(el);
+  });
+});
+</script>
+
+</body>
+</html>

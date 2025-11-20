@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FreightProtect Inquiry</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+  <div style="text-align: center;">
+    <img src="cid:freight_logo" alt="FreightProtect"
+     style="max-width: 100%; width: 100%; height: auto; display: block; margin: 0 auto;" />
+
+  </div>
+
+  <h2 style="margin-top: 30px;">🚛 New LTL Sales Lead</h2>
+
+  <p><strong>Name:</strong> {{ first_name }} {{ last_name }}</p>
+  <p><strong>Company:</strong> {{ company_name }}</p>
+  <p><strong>Email:</strong> {{ work_email }}</p>
+  <p><strong>Phone:</strong> {{ mobile_phone }}</p>
+  <p><strong>Company Type:</strong> {{ company_types }}</p>
+
+  <p>This lead has expressed interest in early access to FreightProtect's platform for LTL services.</p>
+  <p>Please follow up with them promptly to schedule a demo or consultation.</p>
+
+  <hr>
+  <p style="font-size: 0.9em;">This is an automated message from freightprotect.com</p>
+</body>
+</html>
